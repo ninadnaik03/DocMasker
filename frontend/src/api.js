@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:8000";
+const API = "https://docmasker-backend.onrender.com/extract;
 
 export const extractDocument = async (file) => {
   const formData = new FormData();
