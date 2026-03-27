@@ -1,15 +1,32 @@
 import torch
-from transformers import LayoutLMv3Processor, LayoutLMv3ForTokenClassification
+from transformers import AutoProcessor, LayoutLMv3ForTokenClassification
 from app.core.config import settings
 
 MODEL_NAME = "microsoft/layoutlmv3-base"
-processor = LayoutLMv3Processor.from_pretrained(
-    MODEL_NAME,
-    apply_ocr=False
-)
-model = LayoutLMv3ForTokenClassification.from_pretrained(MODEL_NAME)
 
-model.to(settings.DEVICE)
-model.eval()
+processor = None
+model = None
 
-id2label = {0:"O",1:"VENDOR",2:"AMOUNT",3:"DATE"}
+def load_model():
+    global processor, model
+
+    if processor is None:
+        processor = AutoProcessor.from_pretrained(
+            MODEL_NAME,
+            apply_ocr=False
+        )
+
+    if model is None:
+        model = LayoutLMv3ForTokenClassification.from_pretrained(MODEL_NAME)
+        model.to(settings.DEVICE)
+        model.eval()
+
+    return processor, model
+
+
+id2label = {
+    0: "O",
+    1: "VENDOR",
+    2: "AMOUNT",
+    3: "DATE"
+}
