@@ -3,7 +3,7 @@ uvicorn
 python-multipart
 pillow
 pytesseract
-transformers
-torch
 numpy
 opencv-python
+torch --index-url https://download.pytorch.org/whl/cpu
+transformers==4.36.2
