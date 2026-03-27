@@ -1,0 +1,13 @@
+export default function Navbar() {
+  return (
+    <div style={{
+      background: "#111",
+      color: "#fff",
+      padding: "15px 20px",
+      fontSize: "20px",
+      fontWeight: "600"
+    }}>
+      DocMasker
+    </div>
+  );
+}
